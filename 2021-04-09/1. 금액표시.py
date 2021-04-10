@@ -1,9 +1,19 @@
 def tag(price):
-    lst = []
-    lst.append(price % 1000)
+    rem = price % 1000
+    global lst
+    lst.append(rem)
     price = price // 1000
     if price < 1000:
-        return
+        lst.append(price)
+        return lst
+    return tag(price)
 
 price = int(input())
-# splitted_price = price.split()
+lst = []
+tag(price)
+lst.reverse()
+# print(','.join(lst))
+ans = str()
+for num in lst:
+    ans = ans + str(num) + ','
+print(ans[:-1])
